@@ -22,3 +22,36 @@
   </form>
   {% endfor %}
 {% endblock %}
+{% block js %}
+  <script>
+    $('#fechaReserva').change(function(){
+      var fecha = $(this).val(); //obtengo fecha seleccionada
+
+      var today = new Date(); //obtengo fecha de hoy
+      var dd = today.getDate(); //obtengo el día
+      var mm = today.getMonth()+1; //obtengo el mes
+      var yyyy = today.getFullYear(); //obtengo el año
+
+      //antepongo un 0 si es menor a 10, para cumplir con formato
+      if(dd < 10){
+          dd = '0'+dd;
+      } 
+
+      //antepongo un 0 si es menor a 10, para cumplir con formato
+      if(mm < 10){
+          mm = '0'+mm;
+      } 
+      var today = yyyy+'-'+mm+'-'+dd; //concateno las variable para poder comparar fechas
+
+      if (fecha < today ) {
+        swal({
+          type: 'error',
+          title: 'Error!',
+          text: 'Has seleccionado una fecha menor a la actual, por favor vuelve a seleccionar una fecha valida.',
+        });
+        $(this).val('');
+      }
+    });
+    
+  </script>
+{% endblock %}
