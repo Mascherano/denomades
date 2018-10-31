@@ -1,0 +1,8 @@
+{% extends "layout.twig" %}
+{% block content %}
+  <h1 class="text-center">Actividades en Denomades</h1>
+  <p class="text-center small text-success">¡Elije alguna de nuestras actividades!</p><br>
+  {% for activity in activities%}
+    <a href="{{ 'activities/' | url }}{{ activity.id}}" class="text-center">{{ activity.name }}</a><br>
+  {% endfor %}
+{% endblock %}
